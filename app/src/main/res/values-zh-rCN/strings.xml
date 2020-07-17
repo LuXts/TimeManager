@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">时间管理大师</string>
+    <string name="welcome_word">每个人\n都是\n时间管理大师</string>
+    <string name="Guide_Text_Title">检查权限</string>
+    <string name="Guide_Text_Content">\t我们需要对应权限保证APP能够正常运行，请按照以下说明给App授权。未授权将无法使用本App。</string>
+    <string name="Guide_Text_1">\t为了锁机界面的正常显示，我们需要获取本机的悬浮窗权限，您可以通过点击确认跳转到对应界面，并打开“在其他应用上层显示”（即悬浮窗）权限。</string>
+    <string name="Guide_Text_2">\t为了时间管理大师能跟踪您的应用使用，我们需要查看手机的应用使用情况，点击确认跳转到对应界面，并打开“允许访问使用记录”权限。</string>
+    <string name="Main_Bottom_Button_1">管理列表</string>
+    <string name="Main_Bottom_Button_2">时间列表</string>
+    <string name="Main_Bottom_Button_3">设置</string>
+</resources>

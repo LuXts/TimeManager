@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TimeManager</string>
+    <string name="welcome_word">Everyone\n can manage\n time</string>
+    <string name="Guide_Text_Title">PERMISSION CHECK</string>
+    <string name="Guide_Text_Content">\tWe need the corresponding permissions to ensure that the app can run smoothly. Please authorize the app according to the following instructions. You cannot use this app without the following request permissions.
+</string>
+    <string name="Guide_Text_1">\tFirst, to display the lock interface, we need to obtain the floating window permission of your phone. You can click OK to jump to the corresponding interface and open the permission of "display on the upper layer of other applications" (i.e. floating window).</string>
+    <string name="Guide_Text_2">\tNext, to track your application usage by time manage master, we need to check the application usage of the your phone, click OK to jump to the corresponding interface and open the permission of "allow access to usage record".</string>
+    <string name="Main_Bottom_Button_1">Manager List</string>
+    <string name="Main_Bottom_Button_2">Time List</string>
+    <string name="Main_Bottom_Button_3">Setting</string>
+</resources>
