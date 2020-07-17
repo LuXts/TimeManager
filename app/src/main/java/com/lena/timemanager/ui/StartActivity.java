@@ -17,15 +17,18 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.leaf.library.StatusBarUtil;
 import com.lena.timemanager.R;
+import com.lena.timemanager.tools.Globe;
 import com.lena.timemanager.tools.SimpleTool;
 
 import me.jessyan.autosize.AutoSizeConfig;
 
 
 public class StartActivity extends AppCompatActivity {
-    private BottomSheetDialog dialog = null;
 
     private static final String TAG = "StartActivity";
+    public static final String EXIST = "exist";
+
+    private BottomSheetDialog dialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         StatusBarUtil.setTransparentForWindow(this);
-        if (android.os.Build.VERSION.SDK_INT <= 29) {
+        if (android.os.Build.VERSION.SDK_INT <= 28) {
             StatusBarUtil.setDarkMode(this);
         } else {
             Configuration configuration = getResources().getConfiguration();
@@ -49,6 +52,16 @@ public class StartActivity extends AppCompatActivity {
                     break;
             }
         }
+
+        if (SimpleTool.isUsageStats(this)) {
+            new Thread() {
+                @Override
+                public void run() {
+                    Globe.initInfo(getApplicationContext());
+                }
+            }.start();
+        }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -73,10 +86,17 @@ public class StartActivity extends AppCompatActivity {
 
     private void checkPermission() {
         if (SimpleTool.isUsageStats(this)) {
+            new Thread() {
+                @Override
+                public void run() {
+                    Globe.initInfo(getApplicationContext());
+                }
+            }.start();
             // 有权限
             if (SimpleTool.isAlertWindow(this)) {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                this.finish();
             } else {
                 showGuide(1);
             }
@@ -127,4 +147,6 @@ public class StartActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
+
 }

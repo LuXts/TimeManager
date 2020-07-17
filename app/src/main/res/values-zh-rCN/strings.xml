@@ -9,4 +9,9 @@
     <string name="Main_Bottom_Button_1">管理列表</string>
     <string name="Main_Bottom_Button_2">时间列表</string>
     <string name="Main_Bottom_Button_3">设置</string>
+    <string name="Tool_NoFind_PackName">未知应用</string>
+    <string name="Time_List_Other">其他应用</string>
+    <string name="Date_Hour_Info">"%s 小时 "</string>
+    <string name="Date_Minute_Info">"%s 分钟 "</string>
+    <string name="Date_Second_Info">%s 秒</string>
 </resources>

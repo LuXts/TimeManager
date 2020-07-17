@@ -9,4 +9,9 @@
     <string name="Main_Bottom_Button_1">Manager List</string>
     <string name="Main_Bottom_Button_2">Time List</string>
     <string name="Main_Bottom_Button_3">Setting</string>
+    <string name="Tool_NoFind_PackName">Unknown</string>
+    <string name="Time_List_Other">Other App</string>
+    <string name="Date_Hour_Info">"%s h "</string>
+    <string name="Date_Minute_Info">%s m</string>
+    <string name="Date_Second_Info">%s s</string>
 </resources>

@@ -3,6 +3,7 @@ package com.lena.timemanager.ui;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import com.leaf.library.StatusBarUtil;
 import com.lena.timemanager.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+    private long firstClick;
     private Fragment mainFragment1 = null;
     private Fragment mainFragment2 = null;
     private Fragment mainFragment3 = null;
@@ -24,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         StatusBarUtil.setTransparentForWindow(this);
-        if (android.os.Build.VERSION.SDK_INT <= 29) {
+        if (android.os.Build.VERSION.SDK_INT <= 28) {
             StatusBarUtil.setDarkMode(this);
         } else {
             Configuration configuration = getResources().getConfiguration();
@@ -48,14 +53,18 @@ public class MainActivity extends AppCompatActivity {
                 (BottomNavigationView) findViewById(R.id.Main_BottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
         setFragment(0);
 
     }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
             switch (item.getItemId()) {
                 case R.id.Main_Bottom_Manager_List:
                     setFragment(0);
@@ -69,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     break;
             }
+
             return false;
         }
 
@@ -83,26 +93,27 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 if (mainFragment1 == null) {
                     mainFragment1 = new FragmentManagerList();
-                    mftr.add(R.id.Main_Bottom_Manager_List, mainFragment1);
+                    mftr.add(R.id.Main_FrameLayout, mainFragment1);
                 }
                 mftr.show(mainFragment1);
                 break;
             case 1:
                 if (mainFragment2 == null) {
                     mainFragment2 = new FragmentTimeList();
-                    mftr.add(R.id.Main_Bottom_Time_List, mainFragment2);
+                    mftr.add(R.id.Main_FrameLayout, mainFragment2);
                 }
                 mftr.show(mainFragment2);
                 break;
             case 2:
                 if (mainFragment3 == null) {
                     mainFragment3 = new FragmentSetting();
-                    mftr.add(R.id.Main_Bottom_Setting, mainFragment3);
+                    mftr.add(R.id.Main_FrameLayout, mainFragment3);
                 }
                 mftr.show(mainFragment3);
                 break;
         }
         mftr.commit();
+
     }
 
     private void hideFragment() {
@@ -114,6 +125,19 @@ public class MainActivity extends AppCompatActivity {
         }
         if (mainFragment3 != null) {
             mftr.hide(mainFragment3);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        long secondClick = System.currentTimeMillis();
+        if (secondClick - firstClick > 1000) {
+            Toast.makeText(MainActivity.this, "再次点击退出", Toast.LENGTH_SHORT).show();
+            firstClick = secondClick;
+
+        } else {
+            this.finish();
         }
     }
 
