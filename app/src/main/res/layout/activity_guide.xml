@@ -49,7 +49,7 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_marginBottom="20dp"
-            android:text="确认"
+            android:text="@string/Button_OK"
             android:textColor="@color/textTitleColor"
             android:textSize="15dp" />
 

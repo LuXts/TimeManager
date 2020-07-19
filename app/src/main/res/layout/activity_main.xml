@@ -20,5 +20,6 @@
         android:id="@+id/Main_BottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_main_bar" />
+        app:menu="@menu/bottom_main_bar"
+        app:backgroundTint="@color/background" />
 </LinearLayout>

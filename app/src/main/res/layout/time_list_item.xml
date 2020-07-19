@@ -10,13 +10,14 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="320dp"
         android:layout_height="50dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:backgroundTint="@color/background"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
         app:cardCornerRadius="5dp"
         app:strokeColor="@color/colorPrimary"
-        app:strokeWidth="1dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true">
+        app:strokeWidth="1dp">
 
 
         <LinearLayout

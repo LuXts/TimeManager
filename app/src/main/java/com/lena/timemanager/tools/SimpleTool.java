@@ -1,5 +1,6 @@
 package com.lena.timemanager.tools;
 
+import android.annotation.SuppressLint;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
@@ -132,6 +133,28 @@ public class SimpleTool {
         } else {
             return "";
         }
+    }
+
+    public static String getLastPackName(Context context) {
+        List<PackageInfo> packages = context.getPackageManager()
+                .getInstalledPackages(0);
+        String packageName;
+        @SuppressLint("WrongConstant") UsageStatsManager usageStatsManager =
+                (UsageStatsManager) context.getApplicationContext()
+                        .getSystemService("usagestats");
+
+        long ts = System.currentTimeMillis();
+        List<UsageStats> queryUsageStats =
+                usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, 0, ts);
+
+        UsageStats recentStats = null;
+        for (UsageStats usageStats : queryUsageStats) {
+            if (recentStats == null || recentStats.getLastTimeUsed() < usageStats.getLastTimeUsed()) {
+                recentStats = usageStats;
+            }
+        }
+        packageName = recentStats != null ? recentStats.getPackageName() : null;
+        return packageName;
     }
 
 }

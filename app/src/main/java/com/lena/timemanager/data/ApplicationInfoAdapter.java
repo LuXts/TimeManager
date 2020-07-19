@@ -29,7 +29,8 @@ public class ApplicationInfoAdapter extends BaseQuickAdapter<ApplicationInfo,
         if (hour != 0) {
             temp_hour = getContext().getString(R.string.Date_Hour_Info,
                     Long.toString(hour));
-        } else if (min != 0) {
+        }
+        if (min != 0) {
             temp_min = getContext().getString(R.string.Date_Minute_Info,
                     Long.toString(min));
         } else if (sec != 0) {

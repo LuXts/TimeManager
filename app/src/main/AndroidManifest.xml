@@ -7,6 +7,7 @@
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" /> <!-- 悬浮窗 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.EPlanActivity"></activity>
+
+        <service
+            android:name=".service.CheckService"
+            android:enabled="true"
+            android:exported="false"
+            android:label="@string/Service_Name"
+            android:priority="1000" />
+
         <activity android:name=".ui.MainActivity" />
         <activity
             android:name=".ui.StartActivity"

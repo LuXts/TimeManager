@@ -14,4 +14,13 @@
     <string name="Date_Hour_Info">"%s h "</string>
     <string name="Date_Minute_Info">%s m</string>
     <string name="Date_Second_Info">%s s</string>
+    <string name="Service_Name">TimeManager Check Service</string>
+    <string name="Add_Plan">Add Plan</string>
+    <string name="E_Plan_Start_Time">Start Time</string>
+    <string name="E_Plan_End_Time">End Time</string>
+    <string name="E_Plan_Time">Setting Time</string>
+    <string name="E_Plan_Apps">Allow Apps List</string>
+    <string name="E_Plan_Apps_Setting">Setting</string>
+    <string name="Button_OK">OK</string>
+    <string name="Time_Picker_Title">Select Time</string>
 </resources>

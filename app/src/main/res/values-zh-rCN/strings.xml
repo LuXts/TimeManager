@@ -14,4 +14,13 @@
     <string name="Date_Hour_Info">"%s 小时 "</string>
     <string name="Date_Minute_Info">"%s 分钟 "</string>
     <string name="Date_Second_Info">%s 秒</string>
+    <string name="Service_Name">时间管理大师检查服务</string>
+    <string name="Add_Plan">添加计划</string>
+    <string name="E_Plan_Start_Time">开始时间</string>
+    <string name="E_Plan_End_Time">结束时间</string>
+    <string name="E_Plan_Time">时间设置</string>
+    <string name="E_Plan_Apps">App 白名单</string>
+    <string name="E_Plan_Apps_Setting">设置</string>
+    <string name="Button_OK">确认</string>
+    <string name="Time_Picker_Title">选择时间</string>
 </resources>

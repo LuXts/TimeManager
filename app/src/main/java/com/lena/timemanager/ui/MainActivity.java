@@ -3,6 +3,7 @@ package com.lena.timemanager.ui;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         StatusBarUtil.setTransparentForWindow(this);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         if (android.os.Build.VERSION.SDK_INT <= 28) {
             StatusBarUtil.setDarkMode(this);
         } else {
