@@ -32,9 +32,6 @@ public class FragmentTimeList extends Fragment {
     private float OtherTotalTime;
 
 
-    private RecyclerView recyclerView;
-    private ApplicationInfoAdapter adapter;
-
     private View view;
 
     @Nullable
@@ -51,23 +48,13 @@ public class FragmentTimeList extends Fragment {
         return view;
     }
 
-    public class MPercentFormatter extends ValueFormatter {
+    public static class MPercentFormatter extends ValueFormatter {
 
         protected DecimalFormat mFormat;
 
         public MPercentFormatter() {
             mFormat = new DecimalFormat("###,###,##0.0");
         }
-
-        /**
-         * Allow a custom decimalformat
-         *
-         * @param format
-         */
-        public MPercentFormatter(DecimalFormat format) {
-            this.mFormat = format;
-        }
-
 
         @Override
         public String getPieLabel(float value, PieEntry pieEntry) {
@@ -79,9 +66,10 @@ public class FragmentTimeList extends Fragment {
 
     }
 
+    @SuppressWarnings("deprecation")
     private void InitPieChart() {
-        PieChart pieChart = (PieChart) view.findViewById(R.id.DayPieChart);
-        List<PieEntry> entries = new ArrayList<PieEntry>();
+        PieChart pieChart = view.findViewById(R.id.DayPieChart);
+        List<PieEntry> entries = new ArrayList<>();
         List<Integer> colors = new ArrayList<>();
         colors.add(Color.parseColor("#db5a6b"));
         colors.add(Color.parseColor("#ffa631"));
@@ -128,8 +116,8 @@ public class FragmentTimeList extends Fragment {
     }
 
     private void InitList() {
-        recyclerView =
-                (RecyclerView) view.findViewById(R.id.Time_List_Recycler_View);
+        RecyclerView recyclerView =
+                view.findViewById(R.id.Time_List_Recycler_View);
 
 
         //创建布局管理
@@ -139,8 +127,9 @@ public class FragmentTimeList extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         //创建适配器
-        adapter = new ApplicationInfoAdapter(R.layout.time_list_item,
-                Globe.getAppInfoList());
+        ApplicationInfoAdapter adapter =
+                new ApplicationInfoAdapter(R.layout.item_app_time,
+                        Globe.getAppInfoList());
 
         //给RecyclerView设置适配器
         recyclerView.setAdapter(adapter);

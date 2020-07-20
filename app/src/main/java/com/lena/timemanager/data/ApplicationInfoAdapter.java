@@ -7,6 +7,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.lena.timemanager.R;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class ApplicationInfoAdapter extends BaseQuickAdapter<ApplicationInfo,
@@ -18,7 +20,8 @@ public class ApplicationInfoAdapter extends BaseQuickAdapter<ApplicationInfo,
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ApplicationInfo item) {
+    protected void convert(@NotNull BaseViewHolder helper,
+                           ApplicationInfo item) {
         long hour = item.getUseTime() / 3600000;
         long min = item.getUseTime() / 60000 - hour * 60;
         long sec = item.getUseTime() / 1000 - hour * 3600 - min * 60;
@@ -40,16 +43,11 @@ public class ApplicationInfoAdapter extends BaseQuickAdapter<ApplicationInfo,
 
 
         String temp = temp_hour + temp_min + temp_sec;
-
-        //可链式调用赋值
         helper.setImageDrawable(R.id.Time_List_Item_Icon,
                 item.getIcon())
                 .setText(R.id.Time_List_Item_Name, item.getName())
                 .setText(R.id.Time_List_Item_Time,
                         temp);
-
-        //获取当前条目position
-        //int position = helper.getLayoutPosition();
     }
 
 

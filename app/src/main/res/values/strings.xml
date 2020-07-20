@@ -23,4 +23,6 @@
     <string name="E_Plan_Apps_Setting">Setting</string>
     <string name="Button_OK">OK</string>
     <string name="Time_Picker_Title">Select Time</string>
+    <string name="Select_App_Title">Allow Apps List</string>
+    <string name="E_Plan_Name">Plan Name</string>
 </resources>

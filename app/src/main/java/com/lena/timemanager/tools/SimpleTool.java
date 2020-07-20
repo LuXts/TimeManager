@@ -35,12 +35,12 @@ public class SimpleTool {
     }
 
     public static boolean isAlertWindow(Context context) {
-        Boolean result = true;
+        boolean result = true;
         try {
             Class<Settings> clazz = Settings.class;
             Method canDrawOverlays = clazz.getDeclaredMethod("canDrawOverlays"
                     , Context.class);
-            result = (Boolean) canDrawOverlays.invoke(null, context);
+            result = (boolean) canDrawOverlays.invoke(null, context);
         } catch (Exception e) {
             Log.e(TAG, Log.getStackTraceString(e));
         }
@@ -79,14 +79,11 @@ public class SimpleTool {
             PackageManager pm = context.getPackageManager();
             pi = pm.getPackageInfo(pkgName, 0);
         } catch (Throwable t) {
-            Log.w(TAG, t.getMessage(), t);
+            //Log.w(TAG, t.getMessage(), t);
         }
         if (pi != null) {
-            boolean isSysApp =
+            isSystemApp =
                     (pi.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 1;
-            boolean isSysUpd =
-                    false;
-            isSystemApp = isSysApp;
         }
         return isSystemApp;
     }
@@ -136,16 +133,13 @@ public class SimpleTool {
     }
 
     public static String getLastPackName(Context context) {
-        List<PackageInfo> packages = context.getPackageManager()
-                .getInstalledPackages(0);
         String packageName;
         @SuppressLint("WrongConstant") UsageStatsManager usageStatsManager =
                 (UsageStatsManager) context.getApplicationContext()
                         .getSystemService("usagestats");
 
-        long ts = System.currentTimeMillis();
         List<UsageStats> queryUsageStats =
-                usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, 0, ts);
+                usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, 0, System.currentTimeMillis());
 
         UsageStats recentStats = null;
         for (UsageStats usageStats : queryUsageStats) {
@@ -153,7 +147,8 @@ public class SimpleTool {
                 recentStats = usageStats;
             }
         }
-        packageName = recentStats != null ? recentStats.getPackageName() : null;
+        packageName = recentStats != null ? recentStats.getPackageName() :
+                "Unknown";
         return packageName;
     }
 

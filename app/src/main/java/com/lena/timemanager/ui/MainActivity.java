@@ -3,7 +3,6 @@ package com.lena.timemanager.ui;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mainFragment1 = null;
     private Fragment mainFragment2 = null;
     private Fragment mainFragment3 = null;
-    private FragmentTransaction mftr;
-    private BottomNavigationView bottomNavigation;
+    private FragmentTransaction mFragmentTransaction;
 
 
     @Override
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         StatusBarUtil.setTransparentForWindow(this);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         if (android.os.Build.VERSION.SDK_INT <= 28) {
             StatusBarUtil.setDarkMode(this);
         } else {
@@ -51,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        bottomNavigation =
-                (BottomNavigationView) findViewById(R.id.Main_BottomNavigation);
+        BottomNavigationView bottomNavigation =
+                findViewById(R.id.Main_BottomNavigation);
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
@@ -89,44 +86,47 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFragment(int i) {
         FragmentManager fm = getSupportFragmentManager();
-        mftr = fm.beginTransaction();
+        mFragmentTransaction = fm.beginTransaction();
         hideFragment();
         switch (i) {
             case 0:
                 if (mainFragment1 == null) {
                     mainFragment1 = new FragmentManagerList();
-                    mftr.add(R.id.Main_FrameLayout, mainFragment1);
+                    mFragmentTransaction.add(R.id.Main_FrameLayout,
+                            mainFragment1);
                 }
-                mftr.show(mainFragment1);
+                mFragmentTransaction.show(mainFragment1);
                 break;
             case 1:
                 if (mainFragment2 == null) {
                     mainFragment2 = new FragmentTimeList();
-                    mftr.add(R.id.Main_FrameLayout, mainFragment2);
+                    mFragmentTransaction.add(R.id.Main_FrameLayout,
+                            mainFragment2);
                 }
-                mftr.show(mainFragment2);
+                mFragmentTransaction.show(mainFragment2);
                 break;
             case 2:
                 if (mainFragment3 == null) {
                     mainFragment3 = new FragmentSetting();
-                    mftr.add(R.id.Main_FrameLayout, mainFragment3);
+                    mFragmentTransaction.add(R.id.Main_FrameLayout,
+                            mainFragment3);
                 }
-                mftr.show(mainFragment3);
+                mFragmentTransaction.show(mainFragment3);
                 break;
         }
-        mftr.commit();
+        mFragmentTransaction.commit();
 
     }
 
     private void hideFragment() {
         if (mainFragment1 != null) {
-            mftr.hide(mainFragment1);
+            mFragmentTransaction.hide(mainFragment1);
         }
         if (mainFragment2 != null) {
-            mftr.hide(mainFragment2);
+            mFragmentTransaction.hide(mainFragment2);
         }
         if (mainFragment3 != null) {
-            mftr.hide(mainFragment3);
+            mFragmentTransaction.hide(mainFragment3);
         }
     }
 

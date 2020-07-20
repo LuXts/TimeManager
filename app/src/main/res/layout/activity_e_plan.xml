@@ -17,7 +17,8 @@
         android:text="@string/Add_Plan"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry,SpUsage" />
 
     <TextView
         android:id="@+id/E_Plan_Time"
@@ -28,7 +29,8 @@
         android:text="@string/E_Plan_Time"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/E_Plan_Title" />
+        app:layout_constraintTop_toBottomOf="@+id/E_Plan_Title"
+        tools:ignore="RtlSymmetry,SpUsage" />
 
 
     <com.google.android.material.card.MaterialCardView
@@ -43,7 +45,7 @@
         android:gravity="center"
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/E_Plan_Time"
         app:strokeColor="@color/colorPrimary"
@@ -62,7 +64,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
                 android:text="@string/E_Plan_Start_Time"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                tools:ignore="SpUsage" />
 
             <TextView
                 android:id="@+id/E_Plan_Start_Time_Text"
@@ -71,10 +74,10 @@
                 android:gravity="center|center_vertical"
                 android:paddingStart="5dp"
                 android:paddingEnd="10dp"
-                android:text="TextView"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -90,7 +93,7 @@
         android:gravity="center"
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/E_Plan_Start_Time_Button"
         app:strokeColor="@color/colorPrimary"
@@ -109,7 +112,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
                 android:text="@string/E_Plan_End_Time"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                tools:ignore="SpUsage" />
 
             <TextView
                 android:id="@+id/E_Plan_End_Time_Text"
@@ -118,12 +122,64 @@
                 android:gravity="center|center_vertical"
                 android:paddingStart="5dp"
                 android:paddingEnd="10dp"
-                android:text="TextView"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
         </LinearLayout>
 
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/E_Plan_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingStart="20dp"
+        android:text="@string/E_Plan_Name"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/E_Plan_End_Time_Button"
+        tools:ignore="RtlSymmetry,SpUsage" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/E_Plan_Name_Card"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:backgroundTint="@color/background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/E_Plan_Name"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/E_Plan_Name_Edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@color/background"
+                android:ems="10"
+                android:hint="@string/E_Plan_Name"
+                android:inputType="textNoSuggestions"
+                android:textSize="15dp"
+                tools:ignore="SpUsage"
+                android:autofillHints="" />
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
@@ -135,7 +191,8 @@
         android:text="@string/E_Plan_Apps"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/E_Plan_End_Time_Button" />
+        app:layout_constraintTop_toBottomOf="@+id/E_Plan_Name_Card"
+        tools:ignore="RtlSymmetry,SpUsage" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/E_Plan_Apps_List_Button"
@@ -149,7 +206,7 @@
         android:gravity="center"
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/E_Plan_AppList"
         app:strokeColor="@color/colorPrimary"
@@ -168,7 +225,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
                 android:text="@string/E_Plan_Apps"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                tools:ignore="SpUsage" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -179,7 +237,8 @@
                 android:text="@string/E_Plan_Apps_Setting"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -194,5 +253,6 @@
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpUsage" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:behavior_peekHeight="auto">
@@ -20,7 +21,8 @@
             android:textAlignment="center"
             android:textColor="@color/textTitleColor"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="SpUsage" />
 
         <TextView
             android:layout_width="match_parent"
@@ -31,7 +33,8 @@
             android:paddingBottom="0dp"
             android:text="@string/Guide_Text_Content"
             android:textAlignment="viewStart"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            tools:ignore="SpUsage" />
 
         <TextView
             android:id="@+id/Guide_Text"
@@ -42,7 +45,8 @@
             android:paddingRight="20dp"
             android:paddingBottom="20dp"
             android:textAlignment="viewStart"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            tools:ignore="SpUsage" />
 
         <Button
             android:id="@+id/Guide_Button"
@@ -51,7 +55,8 @@
             android:layout_marginBottom="20dp"
             android:text="@string/Button_OK"
             android:textColor="@color/textTitleColor"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            tools:ignore="SpUsage" />
 
 
     </LinearLayout>

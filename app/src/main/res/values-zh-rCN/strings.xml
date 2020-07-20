@@ -23,4 +23,6 @@
     <string name="E_Plan_Apps_Setting">设置</string>
     <string name="Button_OK">确认</string>
     <string name="Time_Picker_Title">选择时间</string>
+    <string name="Select_App_Title">App 白名单</string>
+    <string name="E_Plan_Name">计划名字</string>
 </resources>

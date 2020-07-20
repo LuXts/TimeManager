@@ -13,6 +13,8 @@ import androidx.annotation.RequiresApi;
 
 import com.lena.timemanager.tools.SimpleTool;
 
+import org.jetbrains.annotations.NotNull;
+
 public class CheckService extends Service {
 
     private Handler mHandler = null;
@@ -38,22 +40,20 @@ public class CheckService extends Service {
 
 
         mHandler = new Handler(handlerThread.getLooper()) {
-            public void dispatchMessage(android.os.Message msg) {
-                switch (msg.what) {
-                    case LOOPHANDLER:
-                        final String temp =
-                                SimpleTool.getLastPackName(getApplicationContext());
-                        if (LastPackName.isEmpty() || !temp.equals(LastPackName)) {
-                            handler = new Handler(handlerThread.getLooper());
-                            handler.post(new Runnable() {
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(),
-                                            temp, Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            LastPackName = temp;
-                        }
-                        break;
+            public void dispatchMessage(@NotNull android.os.Message msg) {
+                if (msg.what == LOOPHANDLER) {
+                    final String temp =
+                            SimpleTool.getLastPackName(getApplicationContext());
+                    if (LastPackName.isEmpty() || !temp.equals(LastPackName)) {
+                        handler = new Handler(handlerThread.getLooper());
+                        handler.post(new Runnable() {
+                            public void run() {
+                                Toast.makeText(getApplicationContext(),
+                                        temp, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        LastPackName = temp;
+                    }
                 }
                 mHandler.sendEmptyMessageDelayed(LOOPHANDLER, cycleTime);
             }

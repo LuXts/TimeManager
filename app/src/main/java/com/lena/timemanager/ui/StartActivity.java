@@ -1,5 +1,6 @@
 package com.lena.timemanager.ui;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -29,7 +30,6 @@ import me.jessyan.autosize.AutoSizeConfig;
 public class StartActivity extends AppCompatActivity {
 
     private static final String TAG = "StartActivity";
-    public static final String EXIST = "exist";
 
     private BottomSheetDialog dialog = null;
 
@@ -69,6 +69,7 @@ public class StartActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Globe.initInfo(getApplicationContext());
+                    Globe.loadApps(getApplicationContext());
                 }
             }.start();
         }
@@ -119,7 +120,8 @@ public class StartActivity extends AppCompatActivity {
 
     private void showGuide(int mark) {
         dialog = new BottomSheetDialog(this);
-        View view = getLayoutInflater().inflate(R.layout.activity_guide, null);
+        @SuppressLint("InflateParams") View view =
+                getLayoutInflater().inflate(R.layout.activity_guide, null);
         dialog.setContentView(view);
         TextView textView = view.findViewById(R.id.Guide_Text);
         Button button = view.findViewById(R.id.Guide_Button);
