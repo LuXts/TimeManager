@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,12 +18,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.billy.android.preloader.PreLoader;
+import com.billy.android.preloader.interfaces.DataLoader;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.leaf.library.StatusBarUtil;
 import com.lena.timemanager.R;
-import com.lena.timemanager.tools.Globe;
+import com.lena.timemanager.tools.AppInfoList;
 import com.lena.timemanager.tools.SimpleTool;
+import com.tencent.mmkv.MMKV;
 
 import me.jessyan.autosize.AutoSizeConfig;
 
@@ -32,6 +36,8 @@ public class StartActivity extends AppCompatActivity {
     private static final String TAG = "StartActivity";
 
     private BottomSheetDialog dialog = null;
+
+    private int preLoaderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +70,28 @@ public class StartActivity extends AppCompatActivity {
             }
         }
 
-        if (SimpleTool.isUsageStats(this)) {
-            new Thread() {
-                @Override
-                public void run() {
-                    Globe.initInfo(getApplicationContext());
-                    Globe.loadApps(getApplicationContext());
-                }
-            }.start();
+
+        MMKV kv = MMKV.defaultMMKV();
+        if (kv.getBoolean("New", true)) {
+            kv.encode("New", false);
+            Log.d(TAG, "true");
+        } else {
+            kv.encode("New", true);
+            Log.d(TAG, "false");
         }
+
+
+        class Loader implements DataLoader<String> {
+            @Override
+            public String loadData() {
+                AppInfoList.initInfo(getApplicationContext());
+                AppInfoList.loadApps(getApplicationContext());
+                return "data from network server";
+            }
+        }
+
+        preLoaderId = PreLoader.preLoad(new Loader());
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -101,12 +120,13 @@ public class StartActivity extends AppCompatActivity {
             new Thread() {
                 @Override
                 public void run() {
-                    Globe.initInfo(getApplicationContext());
+                    AppInfoList.initInfo(getApplicationContext());
                 }
             }.start();
             // 有权限
             if (SimpleTool.isAlertWindow(this)) {
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("preLoaderId", preLoaderId);
                 startActivity(intent);
                 this.finish();
             } else {

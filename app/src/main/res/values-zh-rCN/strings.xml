@@ -8,7 +8,7 @@
     <string name="Guide_Text_2">\t为了时间管理大师能跟踪您的应用使用，我们需要查看手机的应用使用情况，点击确认跳转到对应界面，并打开“允许访问使用记录”权限。</string>
     <string name="Main_Bottom_Button_1">管理列表</string>
     <string name="Main_Bottom_Button_2">时间列表</string>
-    <string name="Main_Bottom_Button_3">设置</string>
+    <string name="Main_Bottom_Button_3">关于</string>
     <string name="Tool_NoFind_PackName">未知应用</string>
     <string name="Time_List_Other">其他应用</string>
     <string name="Date_Hour_Info">"%s 小时 "</string>
@@ -25,4 +25,25 @@
     <string name="Time_Picker_Title">选择时间</string>
     <string name="Select_App_Title">App 白名单</string>
     <string name="E_Plan_Name">计划名字</string>
+    <string name="E_Plan_Week_1">一</string>
+    <string name="E_Plan_Week_2">二</string>
+    <string name="E_Plan_Week_3">三</string>
+    <string name="E_Plan_Week_4">四</string>
+    <string name="E_Plan_Week_5">五</string>
+    <string name="E_Plan_Week_6">六</string>
+    <string name="E_Plan_Week_7">日</string>
+    <string name="E_Plan_Warn_1">请选择星期几执行计划。</string>
+    <string name="E_Plan_Warn_2">请输入计划的名字。</string>
+    <string name="Plan_List_Add">添加计划</string>
+    <string name="Plan_Week_1">周一</string>
+    <string name="Plan_Week_2">周二</string>
+    <string name="Plan_Week_3">周三</string>
+    <string name="Plan_Week_4">周四</string>
+    <string name="Plan_Week_5">周五</string>
+    <string name="Plan_Week_6">周六</string>
+    <string name="Plan_Week_7">周日</string>
+    <string name="Plan_Week_Separator">，</string>
+    <string name="Plan_Delete_Title">删除</string>
+    <string name="Plan_Delete_Text">是否删除此计划？</string>
+    <string name="Button_Cancel">取消</string>
 </resources>

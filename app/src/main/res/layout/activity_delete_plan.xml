@@ -17,7 +17,7 @@
             android:layout_height="100dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="@string/Guide_Text_Title"
+            android:text="@string/Plan_Delete_Title"
             android:textAlignment="center"
             android:textColor="@color/textTitleColor"
             android:textSize="20dp"
@@ -31,25 +31,14 @@
             android:paddingTop="20dp"
             android:paddingRight="20dp"
             android:paddingBottom="0dp"
-            android:text="@string/Guide_Text_Content"
+            android:text="@string/Plan_Delete_Text"
             android:textAlignment="viewStart"
             android:textSize="15dp"
             tools:ignore="SpUsage" />
 
-        <TextView
-            android:id="@+id/Guide_Text"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="0dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="20dp"
-            android:textAlignment="viewStart"
-            android:textSize="15dp"
-            tools:ignore="SpUsage" />
 
         <Button
-            android:id="@+id/Guide_Button"
+            android:id="@+id/Delete_Plan_Button"
             android:layout_width="320dp"
             android:layout_height="40dp"
             android:layout_marginBottom="20dp"

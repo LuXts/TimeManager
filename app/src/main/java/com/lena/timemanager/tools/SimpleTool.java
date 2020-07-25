@@ -23,15 +23,20 @@ public class SimpleTool {
 
     private static final String TAG = "SimpleTool";
 
+    private static Boolean isUsagerS = null;
+
     public static boolean isUsageStats(Context context) {
-        long ts = System.currentTimeMillis();
-        UsageStatsManager usageStatsManager = (UsageStatsManager) context
-                .getSystemService(Context.USAGE_STATS_SERVICE);
-        assert usageStatsManager != null;
-        List<android.app.usage.UsageStats> queryUsageStats =
-                usageStatsManager.queryUsageStats(
-                        UsageStatsManager.INTERVAL_BEST, 0, ts);
-        return !(queryUsageStats == null || queryUsageStats.isEmpty());
+        if (isUsagerS == null) {
+            long ts = System.currentTimeMillis();
+            UsageStatsManager usageStatsManager = (UsageStatsManager) context
+                    .getSystemService(Context.USAGE_STATS_SERVICE);
+            assert usageStatsManager != null;
+            List<android.app.usage.UsageStats> queryUsageStats =
+                    usageStatsManager.queryUsageStats(
+                            UsageStatsManager.INTERVAL_BEST, 0, ts);
+            isUsagerS = !(queryUsageStats == null || queryUsageStats.isEmpty());
+        }
+        return isUsagerS;
     }
 
     public static boolean isAlertWindow(Context context) {
@@ -50,12 +55,7 @@ public class SimpleTool {
     public static ArrayList<UsageStats> getUsageList(Context context,
                                                      long startTime,
                                                      long endTime) {
-
-        Log.i(TAG, " EventUtils-getUsageList()   Range start:" + startTime);
-        Log.i(TAG, " EventUtils-getUsageList()   Range end:" + endTime);
-
         ArrayList<UsageStats> list = new ArrayList<>();
-
         UsageStatsManager mUsmManager =
                 (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
         List<UsageStats> usageStatsList =
@@ -64,8 +64,6 @@ public class SimpleTool {
         for (UsageStats stats : usageStatsList) {
             if (stats.getTotalTimeInForeground() > 0) {
                 list.add(stats);
-                Log.i(TAG,
-                        " EventUtils-getUsageList()   stats:" + stats.getPackageName() + "   TotalTimeInForeground = " + stats.getTotalTimeInForeground());
             }
         }
 
@@ -73,6 +71,9 @@ public class SimpleTool {
     }
 
     public static boolean isSystemApp(Context context, String pkgName) {
+        if (pkgName.equals(context.getPackageName())) {
+            return true;
+        }
         boolean isSystemApp = false;
         PackageInfo pi = null;
         try {
@@ -138,8 +139,11 @@ public class SimpleTool {
                 (UsageStatsManager) context.getApplicationContext()
                         .getSystemService("usagestats");
 
+        long i = System.currentTimeMillis();
+
         List<UsageStats> queryUsageStats =
-                usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, 0, System.currentTimeMillis());
+                usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, 0, i);
+
 
         UsageStats recentStats = null;
         for (UsageStats usageStats : queryUsageStats) {
@@ -151,5 +155,19 @@ public class SimpleTool {
                 "Unknown";
         return packageName;
     }
+
+    private static final int FAST_CLICK_DELAY_TIME = 500;
+    private static long lastClickTime;
+
+    public static boolean isFastClick() {
+        boolean flag = true;
+        long currentClickTime = System.currentTimeMillis();
+        if ((currentClickTime - lastClickTime) >= FAST_CLICK_DELAY_TIME) {
+            flag = false;
+            lastClickTime = currentClickTime;
+        }
+        return flag;
+    }
+
 
 }

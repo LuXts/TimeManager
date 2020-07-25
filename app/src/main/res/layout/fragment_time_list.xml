@@ -1,44 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Time_List_Recycler_View"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:padding="20dp"
-                android:paddingStart="20dp"
-                android:text="@string/Main_Bottom_Button_2"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                tools:ignore="RtlSymmetry,SpUsage" />
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/DayPieChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/Time_List_Recycler_View"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
+        android:layout_height="match_parent" />
 </LinearLayout>
 

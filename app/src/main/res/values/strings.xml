@@ -8,7 +8,7 @@
     <string name="Guide_Text_2">\tNext, to track your application usage by time manage master, we need to check the application usage of the your phone, click OK to jump to the corresponding interface and open the permission of "allow access to usage record".</string>
     <string name="Main_Bottom_Button_1">Manager List</string>
     <string name="Main_Bottom_Button_2">Time List</string>
-    <string name="Main_Bottom_Button_3">Setting</string>
+    <string name="Main_Bottom_Button_3">About</string>
     <string name="Tool_NoFind_PackName">Unknown</string>
     <string name="Time_List_Other">Other App</string>
     <string name="Date_Hour_Info">"%s h "</string>
@@ -25,4 +25,25 @@
     <string name="Time_Picker_Title">Select Time</string>
     <string name="Select_App_Title">Allow Apps List</string>
     <string name="E_Plan_Name">Plan Name</string>
+    <string name="E_Plan_Week_1">Mon</string>
+    <string name="E_Plan_Week_2">Tue</string>
+    <string name="E_Plan_Week_3">Wed</string>
+    <string name="E_Plan_Week_4">Thu</string>
+    <string name="E_Plan_Week_5">Fri</string>
+    <string name="E_Plan_Week_6">Sat</string>
+    <string name="E_Plan_Week_7">Sun</string>
+    <string name="E_Plan_Warn_1">Please choose the day of the week.</string>
+    <string name="E_Plan_Warn_2">Please enter the name of the plan.</string>
+    <string name="Plan_List_Add">Add Plan</string>
+    <string name="Plan_Week_1">Mon.</string>
+    <string name="Plan_Week_2">Tue.</string>
+    <string name="Plan_Week_3">Wed.</string>
+    <string name="Plan_Week_4">Thu.</string>
+    <string name="Plan_Week_5">Fri.</string>
+    <string name="Plan_Week_6">Sat.</string>
+    <string name="Plan_Week_7">Sun.</string>
+    <string name="Plan_Week_Separator" />
+    <string name="Plan_Delete_Title">Delete</string>
+    <string name="Plan_Delete_Text">Whether to delete this plan ?</string>
+    <string name="Button_Cancel">Cancel</string>
 </resources>

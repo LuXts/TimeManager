@@ -21,7 +21,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.lena.timemanager.R;
 import com.lena.timemanager.data.ApplicationInfo;
 import com.lena.timemanager.data.ApplicationInfoAdapter;
-import com.lena.timemanager.tools.Globe;
+import com.lena.timemanager.tools.AppInfoList;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -31,8 +31,18 @@ public class FragmentTimeList extends Fragment {
 
     private float OtherTotalTime;
 
+    private PieChart pieChart;
+    private PieData data;
+    private PieDataSet dataSet;
+
+    private RecyclerView recyclerView;
+    private ApplicationInfoAdapter adapter;
+    private List<PieEntry> entries = new ArrayList<>();
+    private List<Integer> colors = new ArrayList<>();
+
 
     private View view;
+    private View head;
 
     @Nullable
     @Override
@@ -41,6 +51,12 @@ public class FragmentTimeList extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_time_list, container,
                 false);
+        head = inflater.inflate(R.layout.fragment_time_list_head, container,
+                false);
+
+        recyclerView =
+                view.findViewById(R.id.Time_List_Recycler_View);
+        pieChart = head.findViewById(R.id.DayPieChart);
 
 
         InitPieChart();
@@ -66,37 +82,46 @@ public class FragmentTimeList extends Fragment {
 
     }
 
-    @SuppressWarnings("deprecation")
-    private void InitPieChart() {
-        PieChart pieChart = view.findViewById(R.id.DayPieChart);
-        List<PieEntry> entries = new ArrayList<>();
-        List<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#db5a6b"));
-        colors.add(Color.parseColor("#ffa631"));
-        colors.add(Color.parseColor("#0aa344"));
-        colors.add(Color.parseColor("#815463"));
-        colors.add(Color.parseColor("#395260"));
-        for (ApplicationInfo applicationInfo : Globe.getAppInfoList()) {
-            if (applicationInfo.getUseTime() / Globe.getTotalTime() >= 0.1) {
-                entries.add(new PieEntry(applicationInfo.getUseTime() / Globe.getTotalTime()
+    private void PieChartDataChange() {
+        entries.clear();
+
+        for (ApplicationInfo applicationInfo : AppInfoList.getAppInfoList()) {
+            if (applicationInfo.getUseTime() / AppInfoList.getTotalTime() >= 0.1) {
+                entries.add(new PieEntry(applicationInfo.getUseTime() / AppInfoList.getTotalTime()
                         , applicationInfo.getName()));
             } else {
                 OtherTotalTime += applicationInfo.getUseTime();
             }
         }
-        entries.add(new PieEntry(OtherTotalTime / Globe.getTotalTime(),
+        entries.add(new PieEntry(OtherTotalTime / AppInfoList.getTotalTime(),
                 getResources().getString(R.string.Time_List_Other)));
+        OtherTotalTime = 0;
         if (entries.size() % 5 == 1) {
             colors.add(Color.parseColor("#aa63fa"));
         }
-        PieDataSet dataSet = new PieDataSet(entries, "");
+    }
+
+
+    @SuppressWarnings("deprecation")
+    private void InitPieChart() {
+        dataSet = new PieDataSet(entries, "");
         dataSet.setColors(colors);
         dataSet.setValueTextSize(12f);
         dataSet.setValueTextColor(getResources().getColor(R.color.textTitleColor));
+        data = new PieData();
 
-        PieData data = new PieData(dataSet);
-        data.setValueTextColor(getResources().getColor(R.color.textTitleColor));
+        data.setDataSet(dataSet);
+
         data.setValueFormatter(new MPercentFormatter());
+        data.setValueTextColor(getResources().getColor(R.color.textTitleColor));
+        colors.add(Color.parseColor("#db5a6b"));
+        colors.add(Color.parseColor("#ffa631"));
+        colors.add(Color.parseColor("#0aa344"));
+        colors.add(Color.parseColor("#815463"));
+        colors.add(Color.parseColor("#395260"));
+
+
+        PieChartDataChange();
 
         pieChart.setData(data);
         pieChart.getDescription().setEnabled(false);
@@ -116,8 +141,6 @@ public class FragmentTimeList extends Fragment {
     }
 
     private void InitList() {
-        RecyclerView recyclerView =
-                view.findViewById(R.id.Time_List_Recycler_View);
 
 
         //创建布局管理
@@ -127,12 +150,20 @@ public class FragmentTimeList extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         //创建适配器
-        ApplicationInfoAdapter adapter =
+        adapter =
                 new ApplicationInfoAdapter(R.layout.item_app_time,
-                        Globe.getAppInfoList());
+                        AppInfoList.getAppInfoList());
+
+        adapter.setHeaderView(head);
 
         //给RecyclerView设置适配器
         recyclerView.setAdapter(adapter);
+
     }
 
+    public void onRe() {
+        PieChartDataChange();
+        pieChart.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
+    }
 }
